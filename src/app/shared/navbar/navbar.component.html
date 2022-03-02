@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/home']">BONSAI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ng-container *ngIf="(user$ | async) === null ; else logOutTemplate">
+          <ul class="navbar-nav me-auto mb--lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" [routerLink]="['/sign-in']">Sign in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/sign-up']">Sign up</a>
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-template #logOutTemplate>
+          <ul class="navbar-nav ms-auto ">
+            <li class="nav-item">
+              <a class="nav-link active" (click)="onLogout()" aria-current="page" [routerLink]="['/home']">Logout</a>
+            </li>
+          </ul>
+        </ng-template>
+
+      </div>
+    </div>
+  </nav>
